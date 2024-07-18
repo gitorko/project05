@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "06c09cf5-1642-45a6-bc3f-771b3ab48a1b",
+		"name": "Project05",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4185850"
+	},
+	"item": [
+		{
+			"name": "Acquire Lock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/try-lock?lockName=lock01&expirySeconds=60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"try-lock"
+					],
+					"query": [
+						{
+							"key": "lockName",
+							"value": "lock01"
+						},
+						{
+							"key": "expirySeconds",
+							"value": "60"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unlock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/unlock?lockName=lock01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"unlock"
+					],
+					"query": [
+						{
+							"key": "lockName",
+							"value": "lock01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
