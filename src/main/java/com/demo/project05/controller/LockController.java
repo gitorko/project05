@@ -1,6 +1,6 @@
 package com.demo.project05.controller;
 
-import com.demo.project05.service.LockService;
+import com.demo.project05.service.DistributedLockService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class LockController {
 
-    final LockService lockService;
+    final DistributedLockService distributedLockService;
 
     @GetMapping("/try-lock")
-    public String tryLock(@RequestParam Long lockId, @RequestParam int expirySeconds) {
-        boolean lockAcquired = lockService.tryLock(lockId, expirySeconds);
-        return lockAcquired ? "Lock acquired!" : "Failed to acquire lock.";
+    public String tryLock(@RequestParam String lockName, @RequestParam int expirySeconds) {
+        boolean lockAcquired = distributedLockService.acquireLock(lockName, expirySeconds);
+        return lockAcquired ? "Lock acquired!" : "Failed to acquire lock!";
     }
 
     @GetMapping("/unlock")
-    public String unlock(@RequestParam Long lockId) {
-        lockService.unlock(lockId);
+    public String unlock(@RequestParam String lockName) {
+        distributedLockService.releaseLock(lockName);
         return "Lock released!";
     }
 }
