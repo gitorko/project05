@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: project05
+  main:
+    banner-mode: "off"
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-main.yaml
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    host: localhost
+    url: jdbc:postgresql://${spring.datasource.host}:5432/test-db
+    username: test
+    password: test@123
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: none
+  batch:
+    jdbc:
+      initialize-schema: never
+  threads:
+    virtual:
+      enabled: true
+logging:
+  level:
+    root: info
+    org.springframework.orm.jpa.JpaTransactionManager: DEBUG
